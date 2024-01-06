@@ -1,0 +1,13 @@
+- [ ] check all scripts
+    - [ ] permissions
+    - [ ] generated files locations
+    - [x] permissions of extensions installation
+- [x] goland script
+- [x] dotfiles script
+    - [x] dconf
+    - [x] etc source
+    - [x] obsidian
+    - [x] gpg keys
+ -[x] configure git
+- [x] files script
+- [x] auto get some dotfiles and dconfs
