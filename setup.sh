@@ -14,7 +14,7 @@ vim neovim zsh mercurial podman
 
 cat <<END
 +----------------------------------------------------------------+
-  Basic programs intalled.
+  Basic programs installed.
 +----------------------------------------------------------------+
 END
 
