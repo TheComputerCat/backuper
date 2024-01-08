@@ -4,8 +4,8 @@ set -e
 
 sources_dir=/etc/apt/sources.list
 user=$1
-local_bin_dir=/home/$user/.local/bin
-dconf_path=$2
+home_user=grep $user /etc/passwd|cut -d: -f 6
+local_bin_dir=$home_user/.local/bin
 backuper_dir=$(pwd)
 
 apt install git firefox-esr calibre emacs keepassxc thunderbird tilix virt-manager \
@@ -23,7 +23,7 @@ cat $backuper_dir/config_files/source.list > $sources_dir
 
 cat <<END
 +----------------------------------------------------------------+
-  Testing sources added to $sources_dir
+  Testing sources added to $sources_dir.
 +----------------------------------------------------------------+
 END
 
@@ -39,7 +39,7 @@ iptables-save
 
 cat <<END
 +----------------------------------------------------------------+
-  no-internet command ready to use
+  no-internet command ready to use.
 +----------------------------------------------------------------+
 END
 
@@ -51,26 +51,27 @@ systemctl restart NetworkManager
 
 cat <<END
 +----------------------------------------------------------------+
-  DNS over TLS with Mullvad ready
+  DNS over TLS with Mullvad ready.
 +----------------------------------------------------------------+
 END
 
 cp $backuper_dir/config_files/daemon.json /etc/docker
+chown root:root /etc/docker/daemon.json
 
 cat <<END
 +----------------------------------------------------------------+
-  DNS added to docker daemon
+  DNS added to docker daemon.
 +----------------------------------------------------------------+
 END
 
-$backuper_dir/install_programs.sh
+$backuper_dir/programs/install_programs.sh $user $home_user
 cat <<END
 +----------------------------------------------------------------+
   Selected additional programs successfully installed.
 +----------------------------------------------------------------+
 END
 
-$backuper_dir/install_extensions.sh
+$backuper_dir/extensions/install_extensions.sh $user $home_user
 
 cat <<END
 +----------------------------------------------------------------+
