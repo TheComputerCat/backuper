@@ -6,20 +6,23 @@ export DEBIAN_FRONTEND=noninteractive
 
 targetUser=$1
 homeFolder=$2
+installationsTmp=$homeFolder/installationsTmp
+
+mkdir -p $installationsTmp
 
 wget --content-disposition https://mullvad.net/en/download/browser/linux-x86_64/latest \
--O $homeFolder/mullvad-browser.tar.xz
+-O $installationsTmp/mullvad-browser.tar.xz
 
 wget --content-disposition https://mullvad.net/en/download/browser/linux-x86_64/latest/signature \
--O $homeFolder/mullvad-browser.tar.xz.asc
+-O $installationsTmp/mullvad-browser.tar.xz.asc
 
 gpg --auto-key-locate nodefault,wkd --locate-keys torbrowser@torproject.org
 
-gpg --verify $homeFolder/mullvad-browser.tar.xz.asc
+gpg --verify $installationsTmp/mullvad-browser.tar.xz.asc
 
-tar -xvf $homeFolder/mullvad-browser.tar.xz -C $homeFolder/
+tar -xvf $installationsTmp/mullvad-browser.tar.xz -C $installationsTmp/
 
-cp -r $homeFolder/mullvad-browser /opt/mullvad-browser
+cp -r $installationsTmp/mullvad-browser /opt/mullvad-browser
 
 chown -R $targetUser:$targetUser /opt/mullvad-browser
 

@@ -6,19 +6,22 @@ export DEBIAN_FRONTEND=noninteractive
 
 targetUser=$1
 homeFolder=$2
+installationsTmp=$homeFolder/installationsTmp
+
+mkdir -p $installationsTmp
 
 wget --content-disposition https://download.jetbrains.com/go/goland-2023.3.2.tar.gz \
--O $homeFolder/GoLand.tar.gz
+-O $installationsTmp/GoLand.tar.gz
 
-pushd $homeFolder
+pushd $installationsTmp
 echo "d11c9ff18323f121eeb643bd093cd4cc9b3ca5f64e1e1dbe4b9b8139217032d1 *GoLand.tar.gz" | sha256sum -c
 popd
 
-tar -xvf $homeFolder/GoLand.tar.gz -C $homeFolder/
+tar -xvf $installationsTmp/GoLand.tar.gz -C $installationsTmp/
 
-mv $homeFolder/GoLand-* $homeFolder/GoLand
+mv $installationsTmp/GoLand-* $installationsTmp/GoLand
 
-cp -r $homeFolder/GoLand /opt/GoLand
+cp -r $installationsTmp/GoLand /opt/GoLand
 
 chown -R $targetUser:$targetUser /opt/GoLand
 

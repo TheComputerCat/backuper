@@ -3,11 +3,14 @@
 set -e
 
 homeFolder=$2
+installationsTmp=$homeFolder/installationsTmp
+
+mkdir -p $installationsTmp
 
 wget --content-disposition https://github.com/obsidianmd/obsidian-releases/releases/download/v1.5.3/obsidian_1.5.3_amd64.deb \
--O $homeFolder/obsidian.deb
+-O $installationsTmp/obsidian.deb
 
-dpkg -i $homeFolder/obsidian.deb
+dpkg -i $installationsTmp/obsidian.deb
 
 cat > $homeFolder/.local/share/applications/obsidian.desktop << END
 [Desktop Entry]

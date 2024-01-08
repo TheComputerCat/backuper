@@ -6,6 +6,9 @@ export DEBIAN_FRONTEND=noninteractive
 
 targetUser=$1
 homeFolder=$2
+installationsTmp=$homeFolder/installationsTmp
+
+mkdir -p $installationsTmp
 
 apt -y install --no-install-recommends apt-transport-https gnupg >> /dev/null
 
@@ -18,18 +21,18 @@ apt update >> /dev/null
 apt -y install --no-install-recommends tor deb.torproject.org-keyring  >> /dev/null
 
 wget --content-disposition https://www.torproject.org/dist/torbrowser/13.0.8/tor-browser-linux-x86_64-13.0.8.tar.xz \
--O $homeFolder/tor-browser.tar.xz
+-O $installationsTmp/tor-browser.tar.xz
 
 wget --content-disposition https://dist.torproject.org/torbrowser/13.0.8/tor-browser-linux-x86_64-13.0.8.tar.xz.asc \
--O $homeFolder/tor-browser.tar.xz.asc
+-O $installationsTmp/tor-browser.tar.xz.asc
 
 gpg --auto-key-locate nodefault,wkd --locate-keys torbrowser@torproject.org
 
-gpg --verify $homeFolder/tor-browser.tar.xz.asc
+gpg --verify $installationsTmp/tor-browser.tar.xz.asc
 
-tar -xvf $homeFolder/tor-browser.tar.xz -C $homeFolder/
+tar -xvf $installationsTmp/tor-browser.tar.xz -C $installationsTmp/
 
-cp -r $homeFolder/tor-browser /opt/tor-browser
+cp -r $installationsTmp/tor-browser /opt/tor-browser
 
 chown -R $targetUser:$targetUser /opt/tor-browser
 
