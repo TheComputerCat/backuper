@@ -8,7 +8,7 @@ home_user=grep $user /etc/passwd|cut -d: -f 6
 local_bin_dir=$home_user/.local/bin
 backuper_dir=$(pwd)
 
-apt install git firefox-esr calibre emacs keepassxc thunderbird tilix virt-manager \
+apt -y install git firefox-esr calibre emacs keepassxc thunderbird tilix virt-manager \
 ranger taskwarrior rsync cmake iptables iptables-persistent grep less nano \
 vim neovim zsh mercurial podman
 
@@ -17,16 +17,6 @@ cat <<END
   Basic programs installed.
 +----------------------------------------------------------------+
 END
-
-cp $sources_dir $sources_dir.cp
-cat $backuper_dir/config_files/source.list > $sources_dir
-
-cat <<END
-+----------------------------------------------------------------+
-  Testing sources added to $sources_dir.
-+----------------------------------------------------------------+
-END
-
 
 groupadd no-internet
 usermod -aG no-internet $user
@@ -45,6 +35,7 @@ END
 
 cat $backuper_dir/config_files/resolved.conf >> /etc/systemd/resolved.conf
 
+systemctl enable systemd-resolved
 ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 systemctl restart systemd-resolved
 systemctl restart NetworkManager
@@ -55,7 +46,8 @@ cat <<END
 +----------------------------------------------------------------+
 END
 
-cp $backuper_dir/config_files/daemon.json /etc/docker
+mkdir -p /etc/docker/
+cp $backuper_dir/config_files/daemon.json /etc/docker/daemon.json
 chown root:root /etc/docker/daemon.json
 
 cat <<END
