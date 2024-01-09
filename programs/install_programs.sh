@@ -2,12 +2,11 @@
 
 set -e
 
-backuper_dir=$(pwd)
-programs_dir=$(pwd)/programs
+backuper_dir=$(pwd)/..
 
 . $backuper_dir/iniGet.sh
 
-confFile=conf.ini
+confFile=$backuper_dir/conf.ini
 declare -A programs
 
 programs[signal]=signal.sh
@@ -26,9 +25,9 @@ programs[oh-my-zsh]=oh-my-zsh.sh
 for key in "${!programs[@]}"; do
     value="$(iniGet $confFile intallations $key)"
     if [[ "$value" == "true" ]]; then
-        if [[ -x $programs_dir/${programs[$key]} ]]; then
+        if [[ -x ${programs[$key]} ]]; then
             echo "Installation for '"$key"' script called."
-            $programs_dir/${programs[$key]}
+            ${programs[$key]}
         else 
             echo "Installation file for '"$key"' does not exist or is not an executable."
         fi

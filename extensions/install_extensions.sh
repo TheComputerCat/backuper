@@ -2,12 +2,11 @@
 
 set -e
 
-backuper_dir=$(pwd)
-extensions_dir=$(pwd)/extensions
+backuper_dir=$(pwd)/..
 
 . $backuper_dir/iniGet.sh
 
-confFile=conf.ini
+confFile=$backuper_dir/conf.ini
 declare -A extensions
 
 extensions[bed-time-mode]=bed-time-mode.sh
@@ -16,11 +15,11 @@ extensions[nothing-to-say]=nothing-to-say.sh
 extensions[pop-shell]=pop-shell.sh
 
 for key in "${!extensions[@]}"; do
-    value="$(iniGet $confFile intallations $key)"
+    value="$(iniGet $confFile extensions $key)"
     if [[ "$value" == "true" ]]; then
-        if [[ -x $extensions_dir/${extensions[$key]} ]]; then
+        if [[ -x ${extensions[$key]} ]]; then
             echo "Installation for '"$key"' script called."
-            $extensions_dir/${extensions[$key]}
+            ${extensions[$key]}
         else 
             echo "Installation file for '"$key"' does not exist or is not an executable."
         fi
