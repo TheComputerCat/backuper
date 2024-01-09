@@ -1,22 +1,21 @@
 #!/bin/bash
 
-homeFolder=$2
-backu_dir=$3
+backu_dir=$1
 
 dconf_path=$backu_dir/Dotfiles/dconfs.ini
 
 declare -A folders
 declare -A files
 
-folders[$backu_dir/Dotfiles/.obsidian/]=$homeFolder/Obsidian/.obsidian
-folders[$backu_dir/Dotfiles/.config/VSCodium/]=$homeFolder/.config/VSCodium
-folders[$backu_dir/Dotfiles/.ssh/]=$homeFolder/.config/VSCodium
+folders[$backu_dir/Dotfiles/.obsidian/]=$HOME/Obsidian/.obsidian
+folders[$backu_dir/Dotfiles/.config/VSCodium/]=$HOME/.config/VSCodium
+folders[$backu_dir/Dotfiles/.ssh/]=$HOME/.config/VSCodium
 # TODO: ensure folder end with /
 
-files[$backu_dir/Dotfiles/.gitconfig]=$homeFolder
-files[$backu_dir/Dotfiles/.profile]=$homeFolder
-files[$backu_dir/Dotfiles/.zshrc]=$homeFolder
-files[$backu_dir/Dotfiles/commander_back.jpg]=$homeFolder/.local/share/backgrounds
+files[$backu_dir/Dotfiles/.gitconfig]=$HOME
+files[$backu_dir/Dotfiles/.profile]=$HOME
+files[$backu_dir/Dotfiles/.zshrc]=$HOME
+files[$backu_dir/Dotfiles/commander_back.jpg]=$HOME/.local/share/backgrounds
 
 for key in "${!folders[@]}"; do
     if [[ -d $key ]]; then
