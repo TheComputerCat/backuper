@@ -10,7 +10,7 @@ backuper_dir=$(pwd)
 
 apt -y install git firefox-esr calibre emacs keepassxc thunderbird tilix virt-manager \
 ranger taskwarrior rsync cmake iptables iptables-persistent grep less nano \
-vim neovim zsh mercurial podman
+vim neovim zsh mercurial podman systemd-resolved
 
 cat <<END
 +----------------------------------------------------------------+
