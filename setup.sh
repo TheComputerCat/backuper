@@ -31,9 +31,9 @@ END
 groupadd no-internet
 usermod -aG no-internet $user
 mkdir -p $local_bin_dir
-cp $backuper_dir/config_files/no-internet $local_bin_dir
-chown $user:$user $local_bin_dir/no-internet
-chmod 755 $local_bin_dir/no-internet
+cp $backuper_dir/config_files/no-internet.sh $local_bin_dir
+chown $user:$user $local_bin_dir/no-internet.sh
+chmod 755 $local_bin_dir/no-internet.sh
 iptables -I OUTPUT 1 -m owner --gid-owner no-internet -j DROP
 iptables-save
 
