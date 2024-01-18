@@ -30,7 +30,7 @@ gpg --auto-key-locate nodefault,wkd --locate-keys torbrowser@torproject.org
 
 gpg --verify $installationsTmp/tor-browser.tar.xz.asc
 
-tar -xvf $installationsTmp/tor-browser.tar.xz -C $installationsTmp/
+tar -xf $installationsTmp/tor-browser.tar.xz -C $installationsTmp/
 
 cp -r $installationsTmp/tor-browser /opt/tor-browser
 

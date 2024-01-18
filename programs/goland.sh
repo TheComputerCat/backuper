@@ -18,7 +18,7 @@ pushd $installationsTmp
 echo "d11c9ff18323f121eeb643bd093cd4cc9b3ca5f64e1e1dbe4b9b8139217032d1 *GoLand.tar.gz" | sha256sum -c
 popd
 
-tar -xvf $installationsTmp/GoLand.tar.gz -C $installationsTmp/
+tar -xf $installationsTmp/GoLand.tar.gz -C $installationsTmp/
 
 mv $installationsTmp/GoLand-* $installationsTmp/GoLand
 

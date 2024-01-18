@@ -20,7 +20,7 @@ gpg --auto-key-locate nodefault,wkd --locate-keys torbrowser@torproject.org
 
 gpg --verify $installationsTmp/mullvad-browser.tar.xz.asc
 
-tar -xvf $installationsTmp/mullvad-browser.tar.xz -C $installationsTmp/
+tar -xf $installationsTmp/mullvad-browser.tar.xz -C $installationsTmp/
 
 cp -r $installationsTmp/mullvad-browser /opt/mullvad-browser
 
