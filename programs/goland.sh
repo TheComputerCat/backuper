@@ -7,6 +7,7 @@ export DEBIAN_FRONTEND=noninteractive
 targetUser=$1
 homeFolder=$2
 installationsTmp=$homeFolder/installationsTmp
+desktopEntry=$homeFolder/.local/share/applications/Goland.desktop
 
 mkdir -p $installationsTmp
 
@@ -25,13 +26,16 @@ cp -r $installationsTmp/GoLand /opt/GoLand
 
 chown -R $targetUser:$targetUser /opt/GoLand
 
-cat > $homeFolder/.local/share/applications/goland.desktop << END 
+cat > $desktopEntry << END 
 [Desktop Entry]
 Type=Application
 Name=GoLand
 Exec=/opt/GoLand/bin/goland.sh
 Icon=/opt/GoLand/bin/goland.png
 END
+
+chown $targetUser:$targetUser $desktopEntry
+chmod 700 $desktopEntry
 
 cat <<END
 +----------------------------------------------------------------+
