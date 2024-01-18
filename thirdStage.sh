@@ -70,3 +70,11 @@ cat <<END
   Selected extensions successfully installed.
 +----------------------------------------------------------------+
 END
+
+systemctl set-default multi-user.target
+
+cat <<END
++----------------------------------------------------------------+
+  Gnome autostart disabled.
++----------------------------------------------------------------+
+END
