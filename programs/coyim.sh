@@ -2,6 +2,7 @@
 
 set -e
 
+user=$1
 homeFolder=$2
 
 if [[ ! -e $homeFolder/Software/coy ]]; then
@@ -11,6 +12,8 @@ if [[ ! -e $homeFolder/Software/coy ]]; then
 fi
 
 echo "8c5d61c2fa8f5f88a9fa7693ae6085b445fa05a9802151a9f6478cd306beade4 $homeFolder/Software/coy" | sha256sum -c
+
+chown -R $user:$user $homeFolder/Software
 
 cat <<END
 +------------------------------------------------+
