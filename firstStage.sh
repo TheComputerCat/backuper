@@ -21,3 +21,4 @@ apt-get -y remove --purge "libreoffice*" && apt-get -y clean && apt-get -y autor
 
 apt -y update 
 apt -y full-upgrade
+reboot
