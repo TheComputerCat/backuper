@@ -2,15 +2,11 @@
 
 set -e
 
-user=$1
-extensionsFolder=$2/extensions-tmp
+extensionsFolder=$HOME/extensions-tmp
 
-apt -y install --no-install-recommends node-typescript >> /dev/null
-
-su - $user<< ENDOU
+su -c "apt -y install --no-install-recommends node-typescript >> /dev/null"
 
 mkdir -p $extensionsFolder
-
 
 # master_jammy is recomended for gnome < 45
 git clone -b master_jammy https://github.com/TheComputerCat/shell.git $extensionsFolder/pop-shell
@@ -25,6 +21,5 @@ cat <<END
   You have to manually enable it in the extensions window.
 +---------------------------------------------------------+
 END
-ENDOU
 
 
