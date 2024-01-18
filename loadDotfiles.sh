@@ -2,27 +2,30 @@
 
 backu_dir=$1
 
-dconf_path=$backu_dir/Dotfiles/dconfs.ini
+dconf_path=$backu_dir/dconfs.ini
 
 declare -A folders
 declare -A files
 
-folders[$backu_dir/Dotfiles/.obsidian/]=$HOME/Obsidian/.obsidian
-folders[$backu_dir/Dotfiles/.config/VSCodium/]=$HOME/.config/VSCodium
-folders[$backu_dir/Dotfiles/.ssh/]=$HOME/.config/VSCodium
+folders[$backu_dir/.obsidian/]=$HOME/Obsidian/.obsidian
+folders[$backu_dir/VSCodium/]=$HOME/.config/VSCodium
+folders[$backu_dir/.ssh/]=$HOME/.config/VSCodium
 # TODO: ensure folder end with /
 
-files[$backu_dir/Dotfiles/.gitconfig]=$HOME
-files[$backu_dir/Dotfiles/.profile]=$HOME
-files[$backu_dir/Dotfiles/.zshrc]=$HOME
-files[$backu_dir/Dotfiles/commander_back.jpg]=$HOME/.local/share/backgrounds
+files[$backu_dir/.gitconfig]=$HOME
+files[$backu_dir/.profile]=$HOME
+files[$backu_dir/.zshrc]=$HOME
+files[$backu_dir/commander_back.jpg]=$HOME/.local/share/backgrounds
+
+mkdir -p $HOME/.local/share/backgrounds
 
 for key in "${!folders[@]}"; do
     if [[ -d $key ]]; then
+        mkdir -p ${folders[$key]}
         rsync -a $key ${folders[$key]}
-        echo $key moved to  ${files[$key]}
+        echo $key moved to  ${folders[$key]}
     else 
-        echo $key not found.
+        echo $key not found in backup folder.
     fi
 done
 
@@ -31,7 +34,7 @@ for key in "${!files[@]}"; do
         rsync -a $key ${files[$key]}
         echo $key copied to  ${files[$key]}
     else 
-        echo $key not found.
+        echo $key not found in backup folder.
     fi
 done
 
