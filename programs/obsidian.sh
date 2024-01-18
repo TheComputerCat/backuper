@@ -2,8 +2,10 @@
 
 set -e
 
+targetUser=$1
 homeFolder=$2
 installationsTmp=$homeFolder/installationsTmp
+desktopEntry=$homeFolder/.local/share/applications/obsidian.desktop
 
 mkdir -p $installationsTmp
 
@@ -12,7 +14,7 @@ wget --content-disposition https://github.com/obsidianmd/obsidian-releases/relea
 
 dpkg -i $installationsTmp/obsidian.deb
 
-cat > $homeFolder/.local/share/applications/obsidian.desktop << END
+cat > $desktopEntry << END
 [Desktop Entry]
 Name=Obsidian No Internet
 Exec=$homeFolder/.local/bin/no-internet obsidian
@@ -24,6 +26,9 @@ Comment=Obsidian
 MimeType=x-scheme-handler/obsidian;
 Categories=Office;
 END
+
+chown $targetUser:$targetUser $desktopEntry
+chmod 700 $desktopEntry
 
 cat <<END
 +----------------------------------------------------------------+
