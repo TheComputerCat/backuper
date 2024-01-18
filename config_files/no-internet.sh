@@ -1,2 +1,0 @@
-#!/bin/bash
-sg no-internet "$@"
