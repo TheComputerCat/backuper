@@ -4,11 +4,11 @@ set -e
 
 sources_dir=/etc/apt/sources.list
 user=$1
-home_user=grep $user /etc/passwd|cut -d: -f 6
+home_user=$(grep "$user" /etc/passwd|cut -d: -f 6)
 local_bin_dir=$home_user/.local/bin
 backuper_dir=$(pwd)
 
-apt -y install git firefox-esr calibre emacs keepassxc thunderbird tilix virt-manager \
+apt update && apt -y install git firefox-esr calibre emacs keepassxc thunderbird tilix virt-manager \
 ranger taskwarrior rsync cmake iptables iptables-persistent grep less nano \
 vim neovim zsh mercurial podman systemd-resolved
 
@@ -21,9 +21,9 @@ END
 groupadd no-internet
 usermod -aG no-internet $user
 mkdir -p $local_bin_dir
-cp $backuper_dir/config_files/no-internet.sh $local_bin_dir
-chown $user:$user $local_bin_dir/no-internet.sh
-chmod 755 $local_bin_dir/no-internet.sh
+cp $backuper_dir/config_files/no-internet $local_bin_dir
+chown $user:$user $local_bin_dir/no-internet
+chmod 755 $local_bin_dir/no-internet
 iptables -I OUTPUT 1 -m owner --gid-owner no-internet -j DROP
 iptables-save
 
