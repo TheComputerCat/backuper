@@ -5,7 +5,7 @@ set -e
 user=$1
 extensionsFolder=$2/extensions-tmp
 
-su - $users << ENDOU
+su - $user << ENDOU
 
 mkdir -p $extensionsFolder
 
@@ -21,7 +21,7 @@ gnome-extensions install --force $extensionsFolder/nothing-to-say.zip
 
 cat <<END
 +---------------------------------------------------------+
-  Bed time mode successfully installed.
+  Nothing to say successfully installed.
   You have to manually enable it in the extensions window.
 +---------------------------------------------------------+
 END

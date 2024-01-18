@@ -5,7 +5,7 @@ set -e
 user=$1
 extensionsFolder=$2/extensions-tmp
 
-su - $users << ENDOU
+su - $user << ENDOU
 
 mkdir -p $extensionsFolder
 
