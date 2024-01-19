@@ -5,8 +5,6 @@ set -e
 user=$1
 extensionsFolder=$2/extensions-tmp
 
-su - $user << ENDOU
-
 mkdir -p $extensionsFolder
 
 wget --content-disposition https://github.com/wbolster/nothing-to-say/archive/refs/tags/v18.zip \
@@ -25,6 +23,5 @@ cat <<END
   You have to manually enable it in the extensions window.
 +---------------------------------------------------------+
 END
-ENDOU
 ### use correct version gnome 44
 

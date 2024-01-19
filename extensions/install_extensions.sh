@@ -3,6 +3,7 @@
 set -e
 
 backuper_dir=$(dirname -- "$0")/..
+user=$1
 
 . $backuper_dir/iniGet.sh
 
@@ -18,7 +19,7 @@ for key in "${!extensions[@]}"; do
     if [[ "$value" == "true" ]]; then
         if [[ -x $backuper_dir/extensions/${extensions[$key]} ]]; then
             echo "Installation for '"$key"' script called."
-            $backuper_dir/extensions/${extensions[$key]} $1 $2
+            su - $user "$backuper_dir/extensions/${extensions[$key]} $user $2"
         else 
             echo "Installation file for '"$key"' does not exist or is not an executable."
         fi
