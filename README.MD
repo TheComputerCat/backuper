@@ -37,3 +37,41 @@ This will ask for the root password.
 
 With these commands all the system will be ready to use.
 
+## Dotfiles
+
+With these scripts some dotfiles can be saved and loaded.
+
+To save:
+
+```
+    ./backupDotfiles.sh
+```
+
+This will save the current files in a folder in `~/Dotfiles/YYYY-MM-DD`.
+Note that some other like ssh and gpg key should be saved manually.
+
+To load:
+
+```
+    ./loadDotfiles [pathToDotfilesFolder]
+```
+This command will try to load:
+
+- Obsidian/.obsidian folder
+- .ssh (must be saved in folder manually)
+- .gitconfig
+- .profile
+- .zshrc
+- background image
+- gpg key for GitHub
+- dconf configuration file
+
+## Folders
+Folders can be transferred using:
+
+```
+    ./transferFolders [-u|-l] [folderBackUp]
+```
+Where:
+- -u: Save folders back up in [folderBackUp]
+- -l: Get back up from [folderBackUp]
