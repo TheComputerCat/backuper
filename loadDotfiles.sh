@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 backu_dir=$1
 
 dconf_path=$backu_dir/dconfs.ini
@@ -43,18 +45,26 @@ cat <<END
 +----------------------------------------------------------------+
 END
 
-gpg --import $backu_dir/gpg/TheComputerCat.gpg
+if [[ -f $backu_dir/gpg/TheComputerCat.gpg ]]; then
+  gpg --import $backu_dir/gpg/TheComputerCat.gpg
 
-cat <<END
+cat << END
 +----------------------------------------------------------------+
   Git GPG key imported.
 +----------------------------------------------------------------+
 END
+else
+  echo gpg key not found.
+fi
 
-cat $dconf_path | sed "s|HOMEDIR|${HOME}|g" | dconf load /
+if [[ -f $dconf_path ]]; then
+  cat $dconf_path | sed "s|HOMEDIR|${HOME}|g" | dconf load /
 
 cat <<END
 +----------------------------------------------------------------+
   Settings loaded with dconf
 +----------------------------------------------------------------+
 END
+else
+  echo dconf file not found.
+fi
