@@ -4,7 +4,7 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
-targetUser=$1
+user=$1
 homeFolder=$2
 installationsTmp=$homeFolder/installationsTmp
 
@@ -34,9 +34,9 @@ tar -xf $installationsTmp/tor-browser.tar.xz -C $installationsTmp/
 
 cp -r $installationsTmp/tor-browser /opt/tor-browser
 
-chown -R $targetUser:$targetUser /opt/tor-browser
+chown -R $user:$user /opt/tor-browser
 
-su - $targetUser -c "cd /opt/tor-browser/ && ./start-tor-browser.desktop --register-app"
+su - $user -c "cd /opt/tor-browser/ && ./start-tor-browser.desktop --register-app"
 
 cat <<END
 +---------------------------------------------------------+

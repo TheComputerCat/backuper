@@ -2,7 +2,7 @@
 
 set -e
 
-targetUser=$1
+user=$1
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -22,7 +22,7 @@ apt -y install --no-install-recommends docker-ce docker-ce-cli containerd.io doc
 
 systemctl enable docker >> /dev/null
 
-usermod -aG docker $targetUser
+usermod -aG docker $user
 
 cat <<END
 +------------------------------------------------+

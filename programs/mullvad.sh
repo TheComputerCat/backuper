@@ -4,7 +4,7 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
-targetUser=$1
+user=$1
 homeFolder=$2
 installationsTmp=$homeFolder/installationsTmp
 
@@ -24,9 +24,9 @@ tar -xf $installationsTmp/mullvad-browser.tar.xz -C $installationsTmp/
 
 cp -r $installationsTmp/mullvad-browser /opt/mullvad-browser
 
-chown -R $targetUser:$targetUser /opt/mullvad-browser
+chown -R $user:$user /opt/mullvad-browser
 
-su - $targetUser -c "cd /opt/mullvad-browser/ && ./start-mullvad-browser.desktop --register-app"
+su - $user -c "cd /opt/mullvad-browser/ && ./start-mullvad-browser.desktop --register-app"
 
 cat <<END
 +----------------------------------------------------------------+

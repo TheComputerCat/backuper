@@ -2,7 +2,7 @@
 
 set -e
 
-targetUser=$1
+user=$1
 homeFolder=$2
 installationsTmp=$homeFolder/installationsTmp
 desktopEntry=$homeFolder/.local/share/applications/obsidian.desktop
@@ -27,7 +27,7 @@ MimeType=x-scheme-handler/obsidian;
 Categories=Office;
 END
 
-chown $targetUser:$targetUser $desktopEntry
+chown $user:$user $desktopEntry
 chmod 700 $desktopEntry
 
 cat <<END
