@@ -25,7 +25,8 @@ cp $backuper_dir/config_files/no-internet $local_bin_dir
 chown $user:$user $local_bin_dir/no-internet
 chmod 755 $local_bin_dir/no-internet
 iptables -I OUTPUT 1 -m owner --gid-owner no-internet -j DROP
-iptables-save
+iptables-save > /etc/iptables/rules.v4
+ip6tables-save > /etc/iptables/rules.v6
 
 cat <<END
 +----------------------------------------------------------------+
