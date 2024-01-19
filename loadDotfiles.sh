@@ -8,8 +8,7 @@ declare -A folders
 declare -A files
 
 folders[$backu_dir/.obsidian/]=$HOME/Obsidian/.obsidian
-folders[$backu_dir/VSCodium/]=$HOME/.config/VSCodium
-folders[$backu_dir/.ssh/]=$HOME/.config/VSCodium
+folders[$backu_dir/.ssh/]=$HOME/.ssh
 # TODO: ensure folder end with /
 
 files[$backu_dir/.gitconfig]=$HOME
