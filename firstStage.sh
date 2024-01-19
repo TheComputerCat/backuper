@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 sources_dir=/etc/apt/sources.list
 user=$1
 home_user=grep $user /etc/passwd|cut -d: -f 6
@@ -21,4 +19,5 @@ apt-get -y remove --purge "libreoffice*" && apt-get -y clean && apt-get -y autor
 
 apt -y update 
 apt -y full-upgrade
+apt -y autoremove --purge
 reboot
