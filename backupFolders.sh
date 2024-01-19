@@ -4,21 +4,23 @@ set -e
 
 target=$1
 
-folders=('BackUp' 'Boring' 'Calibre\ Library' 'Code'
+folders=('BackUp' 'Boring' 'Calibre Library' 'Code'
 'Desktop' 'Documentation' 'Documents' 'Dotfiles' 'Library' 'Mobile' 'Music' 'Obsidian' 'Old'
 'Pictures' 'Software' 'Term' 'Unal' 'Videos')
 
-# TODO: ensure folder end with /
+mkdir -p $target/backup-$(date '+%Y-%m-%d')
 
 for folder in "${folders[@]}"; do
-    if [[ -d $HOME/$folder ]]; then
-        rsync -a --progress $HOME/$folder/ $target/backup-$(date '+%Y-%m-%d')/$folder/
+    if [[ -d $HOME/"$folder" ]]; then
+        echo Copying "$folder"
+        rsync -au --info=progress2 $HOME/"$folder"/ $target/backup-$(date '+%Y-%m-%d')/"$folder"/
     else 
-        echo $key not found.
+        echo "$folder" not found.
     fi
 done
 
-rsync -a --progress --exclude $HOME/Repositories/Thunderbird/ $HOME/Repositories/ $target/backup-$(date '+%Y-%m-%d')/Repositories/
+echo Copying $HOME/Repositories and excluding Thunderbird
+rsync -au --info=progress2 --exclude Thunderbird/ $HOME/Repositories/ $target/backup-$(date '+%Y-%m-%d')/Repositories/
 
 cat <<END
 +----------------------------------------------------------------+
