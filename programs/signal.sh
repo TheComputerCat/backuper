@@ -4,6 +4,8 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
+cd /tmp
+
 wget -O- https://updates.signal.org/desktop/apt/keys.asc  \
 | gpg --dearmor > signal-desktop-keyring.gpg
 
