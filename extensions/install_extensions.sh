@@ -19,7 +19,7 @@ for key in "${!extensions[@]}"; do
     if [[ "$value" == "true" ]]; then
         if [[ -x $backuper_dir/extensions/${extensions[$key]} ]]; then
             echo "Installation for '"$key"' script called."
-            su - $user "$backuper_dir/extensions/${extensions[$key]} $user $2"
+            su - $user -c "$backuper_dir/extensions/${extensions[$key]} $user $2"
         else 
             echo "Installation file for '"$key"' does not exist or is not an executable."
         fi
