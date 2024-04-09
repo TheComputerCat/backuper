@@ -75,3 +75,13 @@ Folders can be transferred using:
 Where:
 - -u: Save folders back up in [folderBackUp]
 - -l: Get back up from [folderBackUp]
+
+## TO-DO
+- [ ] add `tlp tlp-rdw` to limit battery charge
+	- [ ] configurations
+		```
+        # /etc/tlp.conf
+        START_CHARGE_THRESH_BAT0=75
+		STOP_CHARGE_THRESH_BAT0=80
+        ```
+	- [ ] detect if it is a laptop
