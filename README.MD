@@ -85,3 +85,7 @@ Where:
 		STOP_CHARGE_THRESH_BAT0=80
         ```
 	- [ ] detect if it is a laptop
+- [ ] Add ranger and neovim configurations
+- [ ] Add new repositories style
+- [ ] Add modprobe camera block
+- [ ] Add ssh configuration
