@@ -86,6 +86,5 @@ Where:
         ```
 	- [ ] detect if it is a laptop
 - [ ] Add ranger and neovim configurations
-- [ ] Add new repositories style
 - [ ] Add modprobe camera block
 - [ ] Add ssh configuration
