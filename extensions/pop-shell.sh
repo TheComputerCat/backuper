@@ -13,8 +13,8 @@ su -c "apt -y install --no-install-recommends node-typescript >> /dev/null"
 
 mkdir -p $extensionsFolder
 
-# master_jammy is recomended for gnome < 45
-git clone -b master_jammy https://github.com/TheComputerCat/shell.git $extensionsFolder/pop-shell
+# master_jammy is recomended for gnome < 45 and master_mantic for 45+
+git clone -b master_mantic https://github.com/TheComputerCat/shell.git $extensionsFolder/pop-shell
 
 pushd $extensionsFolder/pop-shell
 

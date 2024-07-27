@@ -7,13 +7,13 @@ extensionsFolder=$2/extensions-tmp
 
 mkdir -p $extensionsFolder
 
-wget --content-disposition https://github.com/wbolster/nothing-to-say/archive/refs/tags/v18.zip \
+wget --content-disposition https://github.com/wbolster/nothing-to-say/archive/refs/heads/main.zip \
 -O $extensionsFolder/nothing-to-say.zip
 
 unzip $extensionsFolder/nothing-to-say.zip -d $extensionsFolder/nothing-to-say/
 rm $extensionsFolder/nothing-to-say.zip
-mv $extensionsFolder/nothing-to-say/nothing-to-say-18/* $extensionsFolder/nothing-to-say
-rmdir $extensionsFolder/nothing-to-say/nothing-to-say-18
+mv $extensionsFolder/nothing-to-say/nothing-to-say-main/* $extensionsFolder/nothing-to-say
+rmdir $extensionsFolder/nothing-to-say/nothing-to-say-main
 pushd $extensionsFolder && zip -r nothing-to-say.zip nothing-to-say && popd 
 gnome-extensions install --force $extensionsFolder/nothing-to-say.zip
 
